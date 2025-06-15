@@ -12,7 +12,11 @@ const transporter = nodemailer.createTransport({
 });
 
 // Função para enviar e-mail
-const sendEmail = (to, subject, text) => {
+const sendEmail = (to) => {
+
+  const subject = "Conheça mais sobre mim"
+
+  const text = "Olá,Meu nome é Matheus Rodrigues de Lima, sou formado em Análise e Desenvolvimento de Sistemas e atuo na área de tecnologia com foco em desenvolvimento de software e automação de processos. Tenho experiência prática com linguagens como Python, JavaScript e Java, além de conhecimentos sólidos em banco de dados SQL, desenvolvimento de APIs com Node.js e integração de sistemas. Também possuo vivência com frameworks como React Native e bibliotecas como pandas, OpenCV e MediaPipe, voltados para projetos de automação, visão computacional e aplicações web e mobile. Estou sempre em busca de aprimorar minhas habilidades técnicas e contribuir de forma prática para o desenvolvimento de soluções robustas, escaláveis e orientadas a resultados. Veja em anexo meu currículo e entre em contato para mais informações"
   
   const mailOptions = {
     from: 'mhs.djc@gmail.com',
@@ -22,7 +26,7 @@ const sendEmail = (to, subject, text) => {
     attachments: [
                 {
                     filename: 'documento.pdf',
-                    path:  path.join(__dirname, 'arquivos', 'seuarquivo.pdf')
+                    path:  path.join(__dirname, 'arquivos', 'Matheus currículo (1) (1).pdf')
                 }
             ]
   };
