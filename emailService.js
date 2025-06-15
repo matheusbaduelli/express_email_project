@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 
 // Função para enviar e-mail
 const sendEmail = (to, subject, text) => {
-  const pdfPath = path.join(__dirname, 'arquivos', 'seuarquivo.pdf');
+  
   const mailOptions = {
     from: 'mhs.djc@gmail.com',
     to,
@@ -22,7 +22,7 @@ const sendEmail = (to, subject, text) => {
     attachments: [
                 {
                     filename: 'documento.pdf',
-                    path: pdfPath
+                    path:  path.join(__dirname, 'arquivos', 'seuarquivo.pdf')
                 }
             ]
   };

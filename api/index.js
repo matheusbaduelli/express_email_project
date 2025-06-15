@@ -6,7 +6,7 @@ app.use(express.json()); // Para poder receber JSON no corpo das requisições
 
 // Rota para enviar e-mail
 app.post('/send-email', async (req, res) => {
-  const { to, subject, text } = req.body;
+  const { to, subject, text} = req.body;
 
   if (!to || !subject || !text) {
     return res.status(400).send('Faltando parâmetros: to, subject e text');
