@@ -1,36 +1,48 @@
 const express = require('express');
-const sendEmail = require('../emailService'); // Importa o serviço de envio de e-mail
+const cors = require('cors'); // Importa o pacote cors
+const sendEmail = require('../emailService');
 const app = express();
 
-app.use(express.json()); // Para poder receber JSON no corpo das requisições
+// Configuração do CORS
+app.use(cors({
+  origin: '*', // Em produção, substitua por seu domínio específico
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 
-const PORT = 3000; 
+app.use(express.json());
+
+const PORT = 3000;
 
 // Rota para enviar e-mail
 app.post('/send-email', async (req, res) => {
-  const { to} = req.body;
+  console.log('Requisição recebida:', req.body); // Debug
+  
+  const { to } = req.body;
 
-  if (!to  ) {
-    return res.status(400).send('Faltando parâmetros: to, subject e text');
+  if (!to) {
+    return res.status(400).json({ error: 'Faltando parâmetro: to' });
   }
 
   try {
     await sendEmail(to);
-    res.status(200).send('E-mail enviado com sucesso!');
+    res.status(200).json({ message: 'E-mail enviado com sucesso!' });
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Erro ao enviar o e-mail');
+    console.error('Erro ao enviar email:', error);
+    res.status(500).json({ error: 'Erro ao enviar o e-mail' });
   }
 });
 
 // Rota principal
 app.get('/', (req, res) => {
-  res.send('Olá, Vercel com Express!');
+  res.json({ message: 'API funcionando!' });
 });
 
-// Exporta o app para a Vercel
-module.exports = app;
-
-app.listen(PORT, () => {
+// Para desenvolvimento local
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
     console.log(`Servidor rodando na porta http://localhost:${PORT}`);
-});
+  });
+}
+
+module.exports = app;
