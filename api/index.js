@@ -5,7 +5,7 @@ const app = express();
 
 // Configuração do CORS
 app.use(cors({
-  origin: 'https://matheuslima.dev.br/', // Em produção, substitua por seu domínio específico
+  origin: '*', // Em produção, substitua por seu domínio específico
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
