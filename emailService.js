@@ -28,7 +28,7 @@ const sendEmail = (to) => {
     attachments: [
                 {
                     filename: 'documento.pdf',
-                    path:  path.join(__dirname, 'arquivos', 'Currículo31-08-2025.pdf')
+                    path:  path.join(__dirname, 'arquivos', 'Curriculo.pdf')
                 }
             ]
   };
