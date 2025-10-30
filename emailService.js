@@ -4,16 +4,16 @@ require('dotenv').config();
 
 const nodemailer = require('nodemailer');
 
-// Configuração do transporte de e-mail (aqui usamos Gmail como exemplo)
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL, // Substitua pelo seu e-mail
-    pass: process.env.SENHA // Se estiver usando o Gmail, pode ser uma senha de app
+    user: process.env.EMAIL, 
+    pass: process.env.SENHA 
   }
 });
 
-// Função para enviar e-mail
+
 const sendEmail = (to) => {
 
   const subject = "Conheça mais sobre mim"

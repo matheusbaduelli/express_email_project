@@ -3,9 +3,9 @@ const cors = require('cors'); // Importa o pacote cors
 const sendEmail = require('../emailService');
 const app = express();
 
-// Configuração do CORS
+
 app.use(cors({
-  origin: '*', // Em produção, substitua por seu domínio específico
+  origin: '*', 
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type']
 }));
@@ -14,9 +14,9 @@ app.use(express.json());
 
 const PORT = 3000;
 
-// Rota para enviar e-mail
+
 app.post('/send-email', async (req, res) => {
-  console.log('Requisição recebida:', req.body); // Debug
+  console.log('Requisição recebida:', req.body); 
   
   const { to } = req.body;
 
@@ -33,12 +33,12 @@ app.post('/send-email', async (req, res) => {
   }
 });
 
-// Rota principal
+
 app.get('/', (req, res) => {
   res.json({ message: 'API funcionando!' });
 });
 
-// Para desenvolvimento local
+
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`Servidor rodando na porta http://localhost:${PORT}`);
